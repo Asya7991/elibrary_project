@@ -195,3 +195,6 @@ from django.shortcuts import render
 
 def login_view(request):
     return render(request, 'elibrary_app/login.html')
+
+def pong(request):
+    return JsonResponse({message: "pong"})
