@@ -1,0 +1,156 @@
+{% include 'register_header.html' %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Регистрация</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-image: url(static/images/1.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        #text_l {
+            color: #86c277 !important;
+        }
+
+        #word {
+            color: #86c277;
+            font-weight: 500;
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        #word:hover {
+            color: #3b732d;
+            border-bottom: 2px solid #3b732d;
+        }
+
+        #myButton {
+            background-color: #86c277;
+            border: 0px;
+            padding: 10px 25px;
+            color: black;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        #myButton:hover {
+            background-color: #4c7062;
+            color: white;
+        }
+
+        #h5 {
+            margin-bottom: 30px;
+            background-color: white;
+            padding: 0;
+            font-size: 17px;
+        }
+
+        .form-label {
+            margin-bottom: 15px;
+        }
+
+        .mb-4 {
+            margin-bottom: 0 !important;
+        }
+
+        .register--form {
+            margin-left: 55px;
+        }
+
+        /* Новый стиль для заголовка */
+        .registration-title {
+            text-align: center;
+            padding: 0;
+            font-size: 50px;
+            margin-bottom: 60px;
+            color: #ffffff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" style="margin-bottom: 70px;">
+        <h2 class="registration-title">РЕГИСТРАЦИЯ</h2>
+
+        <form method="POST" action="{% url 'register' %}" class="register--form">
+            {% csrf_token %}
+            <!-- Section: Design Block -->
+            <!-- Jumbotron -->
+            <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
+                <div class="row gx-lg-5 align-items-center">
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+                        <h1 class="my-5 display-3 fw-bold ls-tight">
+                            Лучшее место <br />
+                            <span id="text_l" class="text-primary">для Ваших книжных предпочтений!</span>
+                        </h1>
+                    </div>
+
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+                        <div class="card">
+                            <div class="card-body py-5 px-md-5">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-6 form-outline mb-4">
+                                            <input type="text" id="form3Example3" class="form-control"
+                                                placeholder="Напишите имя" name="first--name" />
+                                            <label class="form-label" for="form3Example3">Имя</label>
+                                        </div>
+                                        <div class="col-lg-6 form-outline mb-4">
+                                            <input type="text" id="form3Example3" class="form-control"
+                                                placeholder="Напишите фамилию" name="last--name" />
+                                            <label class="form-label" for="form3Example3">Фамилия</label>
+                                        </div>
+                                    </div>
+
+                                    <!-- Email input -->
+                                    <div class="form-outline mb-4">
+                                        <input type="email" id="form3Example3" class="form-control"
+                                            placeholder="Укажите Ваш e-mail" name="email" />
+                                        <label class="form-label" for="form3Example3">E-mail адрес</label>
+                                    </div>
+
+                                    <!-- Password input -->
+                                    <div class="form-outline mb-4">
+                                        <input type="password" id="form3Example4" class="form-control"
+                                            placeholder="Придумайте пароль" name="password" />
+                                        <label class="form-label" for="form3Example4">Пароль</label>
+                                    </div>
+
+                                    <!-- Блок с сообщениями об ошибках -->
+                                    <div id="message_" class="text-danger bg-body-tertiary text-center mb-4">
+                                        {% for message in messages %}
+                                        <h5 id="h5">{{ message }}</h5>
+                                        {% endfor %}
+                                    </div>
+
+                                    <!-- Submit button -->
+                                    <button id="myButton" type="submit" class="btn btn-primary btn-block mb-4">
+                                        Зарегистрироваться
+                                    </button>
+                                    <p>Уже есть аккаунт? <a id="word" href="{% url 'login' %}">Войти</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Jumbotron -->
+        </form>
+    </div>
+</body>
+
+</html>

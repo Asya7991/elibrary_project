@@ -1,0 +1,266 @@
+
+body {
+    background-color: #ffffff; 
+    color: #ffffff; /* Цвет текста для контента */
+    font-family: 'Georgia', serif; 
+}
+
+/* Для НАВИГАЦИОННОЙ панели. 
+HEADER */
+
+.navbar {
+    background-color: #181818; 
+    padding: 20px 30px; /* Отступы для навигации */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+    /* transition: background-color 0.3s ease; Плавный переход фона */
+}
+
+.navbar-brand{
+  color: #b1ff9e;
+  font-size: 35px;
+  font-weight: 800;
+}
+
+
+
+.navbar-nav .nav-link {
+    font-size: 20px; 
+    margin: 0 30px;       
+    color: #b1ff9e; 
+    transition: color 0.1s; /* Плавный переход цвета при наведении */
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 600;    
+    border-radius: 5px; /* Закругленные углы для ссылок */
+}
+
+.navbar-nav .nav-link:hover {    
+    color: #fafafa;    
+}
+
+
+/* Значок поддержки */
+
+/* .clickable-image {
+    width: 30px;
+    height: auto; 
+    cursor: pointer;
+    margin-left: 10px; 
+    vertical-align: middle;    
+} */
+
+.nav-item {
+  display: flex;
+  flex-direction: column; /* Выстраиваем элементы в колонку */
+  align-items: center; /* Центрируем элементы по горизонтали */
+  margin: 0 10px; /* Добавляем отступы между элементами */
+}
+
+.nav-item img {
+  width: 55px; 
+  height: 55px; 
+  margin-bottom: 1px; /* Отступ между иконкой и текстом */
+}
+
+.nav-link {
+  margin-top: 10px; /* Добавляем отступ сверху для текста "На главную" */
+}
+
+.left-icon {
+  order: 1; 
+  margin-left: 60px;
+}
+
+.left-icon:hover {
+  cursor: pointer;
+}
+
+.modal-header {
+  background-color: #ffffff; /* Цвет фона заголовка модального окна */
+  color: #000000; 
+}
+
+.modal-footer .btn-secondary {
+  background-color: #0a3a63; /* Цвет кнопки "Закрыть" */
+  color: #ffffff; 
+}
+
+
+
+/* Стили для СЕКЦИЙ */
+.brand--section, .feature--section, .addBook--section {
+  background-color: #b1ff9e; 
+  padding: 60px 0; 
+  text-align: center;      
+  margin-top: 50px; /* Отступ между секциями */
+}
+
+.brand--section::before, .feature--section::before, .addBook--section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.7); /* Цвет плёнки */
+  z-index: -1; /* Установите z-index ниже, чем у содержимого секции */
+}
+
+
+/* текст в секциях */
+.brand--details {
+    font-size: 50px;
+    color: #000; 
+    font-weight: 700;
+    margin-left: 50px;
+  }
+
+/* кнопка ДОБАВИТЬ   */
+.btn-outline-success, #btn_v_add {
+    border-radius: 0;
+    color: #000; 
+    border-color: #000;
+  }
+
+.btn-outline-success:hover {
+    background-color: #000; 
+    color: #b1ff9e; 
+    border-color: #250101;
+}
+
+
+
+
+/* Стили для карусели */
+
+.carousel-item {
+  padding: 20px 0; /* Отступы для карусели */
+}
+
+.carousel-image {
+  height: 50px; /* Установите фиксированную высоту для изображений */
+  object-fit: cover; /* Сохранение пропорций изображений */
+  width: 100%; /* Ширина 100% для равномерного отображения */
+  margin: 0 5px; /* Отступы между изображениями */
+  border-radius: 5px; /* Закругленные углы для изображений */
+}
+
+/* Стили для кнопок листания */
+.owl-carousel {
+  position: relative; /* Убедитесь, что карусель имеет относительное позиционирование */
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  position: absolute; /* Абсолютное позиционирование */
+  top: 50%; /* Центрируем по вертикали */
+  transform: translateY(-50%); /* Центрируем по вертикали */
+  width: 50px; /* Ширина кнопок */
+  height: 50px; /* Высота кнопок */
+  background-color: rgba(255, 255, 255, 0.7); /* Полупрозрачный фон */
+  border: none; /* Убираем рамку */
+  border-radius: 50%; /* Круглая форма кнопок */
+  display: flex; /* Центрируем содержимое */
+  align-items: center; /* Вертикальное выравнивание */
+  justify-content: center; /* Горизонтальное выравнивание */
+  z-index: 1; /* Убедитесь, что кнопки находятся выше изображений */
+  transition: background-color 0.3s, transform 0.3s; /* Плавный переход фона и эффекта при наведении */
+}
+
+.carousel-control-prev {
+  left: 10px; /* Расположение кнопки "Предыдущий" */
+  transform: translateX(-100px) !important;
+  opacity: 0;
+}
+
+.carousel-control-next {
+  right: 10px; /* Расположение кнопки "Следующий" */
+  transform: translateX(100px) !important;
+  opacity: 0;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  background-color: rgba(240, 240, 240, 0.8); /* Цвет фона при наведении */
+  transform: scale(1.1); /* Увеличение кнопки при наведении */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: transparent; /* Убираем фон у иконок */
+  width: 20px; /* Ширина иконок */
+  height: 20px; /* Высота иконок */
+  font-size: 20px; /* Размер иконок */
+  color: #000; /* Цвет иконок */
+}
+
+#citata{
+  text-align: center;
+  color: rgb(0, 0, 0);
+  margin-bottom: 45px;
+  font-size: 40px;
+}
+
+
+/* Секция О НАС */
+
+#about_us{
+  color: #000;
+  text-align: center;
+  margin: 30px 350px 0 350px;
+  font-size: 30px;
+}
+
+
+
+/* Стили для ФУТЕРА */
+
+
+/* отступ внизу между секцией и футером */
+  .feature--section {
+    margin: 50px 0;
+  }
+
+  /* секция ДОБАВИТЬ СВОЮ КНИГУ  */
+  .addBook--section {
+    background-color: #e0e0e0; 
+    padding: 30px 0;   
+  }
+
+  .addBook--section h2 {
+    color: #194a7b; /* Цвет заголовка */
+  }
+
+  .footer--section {
+    background-color: #000000; /* Цвет фона футера */
+    color: #ffffff; /* Цвет текста футера */
+    padding: 20px 0;
+  }
+
+  .footer--section p {
+    margin: 0; /* Убираем отступы */
+  }
+
+#foot {
+  color: #000000;
+}
+
+#mail {
+  color: #0a3a63;
+}
+
+.navbar-nav .nav-link.active, .navbar-nav .nav-link.show{
+  color: white;
+}
+
+.navbar-brand:focus, .navbar-brand:hover{
+  color: #b1ff9e;
+}
+
+#about{
+  color: #000 !important;
+}
+
+.modal-body{
+  color: #000;
+}
+

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Verify Email</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-image: url(static/images/1.jpg);
+            background-size: cover; /* Изображение будет масштабироваться, чтобы покрыть весь экран */
+            background-position: center; /* Центрируем изображение */
+            background-repeat: no-repeat;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative; 
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(75, 75, 75, 0.5); 
+            z-index: 1; 
+        }
+
+        .container {
+            padding: 2rem;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            position: relative; /* Чтобы контейнер был выше наложения */
+            z-index: 2; /* Контейнер выше наложения */
+        }
+
+        h1 {
+            color: #fff;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            white-space: nowrap; 
+           
+          
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        input:focus {
+            border-color: #b1ff9e;
+            outline: none;
+        }
+
+        button {
+            background: #b1ff9e;
+            color: rgb(0, 0, 0);
+            font-weight: 600;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: background 0.3s ease, color 0.3s ease; /* Добавьте transition для цвета */
+            width: 100%;
+        }
+
+        button:hover {
+            background: #79bb67;
+            color: white;
+        }
+
+        .messages {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .messages li {
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+        }
+
+        .messages li.error {
+            margin-top: 30px;
+            font-size: 20px;
+            color: #a11111;
+            font-weight: 600;       
+        }
+
+        .messages li.success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #c8e6c9;
+        }
+
+        .login-link {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #f8f8f8;
+        }
+
+        .login-link p {
+            color: #ffffff;
+            font-size: 20px;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-link a {
+            color: #b1ff9e;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 20px;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+            color: #ffffff;
+        }
+
+        #verification-form {
+            margin-top: 1rem;
+        }
+
+.error-message {
+    color: #000000;
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+/* Модальное окно */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.7); 
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%; 
+    max-width: 900px; 
+    position: relative; 
+}
+
+.close {
+    position: absolute;
+    top: 50px; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    background-color: rgba(255, 255, 255, 0.8); 
+    width: 70px; 
+    height: 55px;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    color: black; 
+    font-size: 40px; 
+    cursor: pointer;
+    border: none; 
+    outline: none; 
+}
+
+.close:hover {
+    background-color: #ff5b5b; 
+    color: white;
+}
+
+
+
+.message-modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0, 0, 0, 0.7); 
+            justify-content: center;
+            align-items: center;
+        }
+
+        .message-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 300px;
+        }
+
+        .message-close {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #b1ff9e;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+</style>
+</head>
+
+<body>
+<div class="overlay"></div> <!-- Добавлено полупрозрачное наложение -->
+
+<div class="container">
+<h1>Подтверждение e-mail</h1>
+
+<!-- Форма для ввода email -->
+<div id="email-form" class="input-group">
+    <input type="email" id="email-input" placeholder="Введите ваш email">
+    <button onclick="sendVerificationCode()">Отправить код</button>
+</div>
+
+<!-- Форма для верификации -->
+<div id="verification-form" style="display: none;" class="input-group">
+    <form method="post">
+        {% csrf_token %}
+        <input type="hidden" id="email-hidden" name="email">
+        <input type="text" name="code" placeholder="Введите код подтверждения">
+        <button type="submit">Подтвердить</button>
+    </form>
+</div>
+
+
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<div class="login-link">
+    <p>Уже есть аккаунт?</p>
+    <a href="{% url 'login' %}">Войти</a>
+</div>
+</div>
+
+<!-- Модальное окно с изображением -->
+<div id="imageModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImage" src="static/images/1.jpg" alt="Пример изображения">
+</div>
+
+<!-- Модальное окно для сообщений -->
+<div id="messageModal" class="message-modal">
+    <div class="message-content">
+        <p id="messageText"></p>
+        <button class="message-close" onclick="closeMessageModal()">Закрыть</button>
+    </div>
+</div>
+
+<script>
+// Показать модальное окно через 2 секунды после загрузки страницы
+window.onload = function() {
+    setTimeout(function() {
+        document.getElementById('imageModal').style.display = "flex"; // Используем flex для центрирования
+    }, 
+    // 2000
+);
+}
+
+// Закрыть модальное окно
+function closeModal() {
+    document.getElementById('imageModal').style.display = "none";
+}
+
+function showMessage(message) {
+    $('#messageText').text(message);
+    $('#messageModal').css('display', 'flex');
+}
+
+function closeMessageModal() {
+    $('#messageModal').css('display', 'none');
+}
+
+function sendVerificationCode() {
+    var email = $('#email-input').val();
+    
+    if (!email) {
+        showMessage('Пожалуйста, введите e-mail');
+        return;
+    }
+
+    $.ajax({
+        url: '{% url "send_verification_email" %}',
+        method: 'POST',
+        data: {
+            'email': email,
+            'csrfmiddlewaretoken': '{{ csrf_token }}'
+        },
+        success: function(response) {
+            if (response.status === 'success') {
+                $('#verification-form').show().addClass('fade-in');
+                $('#email-hidden').val(email);
+                showMessage('Код подтверждения отправлен на Ваш e-mail!');
+            } else {
+                showMessage('Ошибка: ' + response.message);
+            }
+        },
+        error: function() {
+            showMessage('Ошибка при отправке кода подтверждения');
+        }
+    });
+}
+
+</script>
+
+
+</body>
+</html>

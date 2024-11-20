@@ -1,0 +1,21 @@
+<!-- mailapp/templates/verify_confirmation_code.html -->
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проверка кода подтверждения</title>
+</head>
+<body>
+    <h1>Проверить код подтверждения</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="code">Код подтверждения:</label>
+        <input type="text" id="code" name="code" required>
+        <button type="submit">Проверить код</button>
+    </form>
+</body>
+</html>
