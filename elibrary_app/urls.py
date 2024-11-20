@@ -7,7 +7,7 @@ from .views import verify_email, send_verification_email
 
 urlpatterns = [
  path('', views.verify_email, name='verify_email'), 
- path("/pink", views.pong), # new
+ path("pink", views.pong), # new
   path('explore', views.explore, name='explore'),
   path('home', views.home, name='home'),
   path('register', views.Registers, name='register'),
