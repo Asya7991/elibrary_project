@@ -1,0 +1,10 @@
+.add--section {
+    padding: 5% 7%;
+    font-weight: 600;
+}
+
+.add--section form {
+    display: flex;
+    flex-direction: column;
+    line-height: 2rem;
+}

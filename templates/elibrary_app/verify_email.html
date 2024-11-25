@@ -12,7 +12,7 @@
         }
 
         body {
-            background-image: url(static/images/1.jpg);
+            background-image: url(static/images/1.jpg) !important;
             background-size: cover; /* Изображение будет масштабироваться, чтобы покрыть весь экран */
             background-position: center; /* Центрируем изображение */
             background-repeat: no-repeat;
@@ -171,12 +171,35 @@
     position: relative; 
 }
 
+.overlay-text {
+    position: absolute; /* Позиционирование относительно родителя */
+    top: 50%; /* Центрируем по вертикали */
+    left: 50%; /* Центрируем по горизонтали */
+    transform: translate(-50%, -50%); /* Центрируем текст */
+    color: white; /* Цвет текста */
+    font-size: 2rem; /* Размер шрифта */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Тень для текста */
+    z-index: 2; /* Убедитесь, что текст выше изображения */
+    text-align: center;
+   }
+
+#h4{
+    margin: 0 110px 0 145px;  
+    color: rgb(243, 243, 243);
+}
+
+.m_txt{
+    font-size: 25px;
+    margin: 35px 110px 25px 145px;
+    color: rgb(252, 252, 252);
+}
+
+
+
 .close {
     position: absolute;
-    top: 50px; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
-    background-color: rgba(255, 255, 255, 0.8); 
+    top: 30px; /* Установите нужное значение, чтобы кнопка была выше изображения */
+    background-color: rgba(255, 255, 255, 0.5); /* Прозрачный фон для кнопки */
     width: 70px; 
     height: 55px;
     display: flex; 
@@ -187,6 +210,7 @@
     cursor: pointer;
     border: none; 
     outline: none; 
+    z-index: 3; /* Убедитесь, что z-index выше, чем у изображения */
 }
 
 .close:hover {
@@ -271,6 +295,15 @@
 <div id="imageModal" class="modal">
     <span class="close" onclick="closeModal()">&times;</span>
     <img class="modal-content" id="modalImage" src="static/images/1.jpg" alt="Пример изображения">
+    <div class="overlay-text"> 
+        <h4 id='h4'>Уважаемый гость!</h4>
+        <p class="m_txt" >Добро пожаловать в нашу Электронную библиотеку!</p>
+        <p class="m_txt">Для того, чтобы Вы смогли зайти на сайт, пожалуйста, зарегистрируйтесь! Для этого введите свой адрес электронной почты, чтобы мы могли проверить его.</p> 
+        <!-- <p class="m_txt" >Добро пожаловать в нашу Электронную библиотеку — уникальное пространство для любителей чтения и
+            обмена знаниями! Наша платформа создана с целью объединения людей, которые ценят литературу, научные
+            исследования и образовательные материалы. Мы стремимся сделать знания доступными для всех.</p>
+        <p class="m_txt">Для того, чтобы Вы смогли зайти на сайт, пожалуйста, зарегистрируйтесь! Для этого введите свой адрес электронной почты, чтобы мы могли проверить его.</p>  -->
+    </div>
 </div>
 
 <!-- Модальное окно для сообщений -->

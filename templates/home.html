@@ -8,12 +8,27 @@
   <title>Главная</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <link rel="stylesheet" href="{% static 'css/forcarousel.css' %}" />
+  {% comment %} <link rel="stylesheet" href="{% static 'css/forcarousel.css' %}" /> {% endcomment %}
   <link rel="stylesheet" href="{% static 'owlcarousel/assets/owl.carousel.min.css' %}">
-  <link rel="stylesheet" href="{% static 'owlcarousel/assets/owl.theme.default.min.css' %}">
-  <link rel="stylesheet" href="{% static 'css/style_12.css' %}" />
+  {% comment %} <link rel="stylesheet" href="{% static 'owlcarousel/assets/owl.theme.default.min.css' %}"> {% endcomment %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 
-
+  <style>
+    #btn_del {
+      cursor: pointer;
+      border: none ;
+      background-color: white;
+      border-top: 1px solid black;
+      border-bottom: 1px solid black;
+      margin-bottom: 10px;
+    }
+    
+    #btn_del:hover {
+      background-color: rgb(168, 16, 16);
+      color: white;
+      border: none;
+    }  
+  </style>
 
 </head>
 
@@ -53,7 +68,7 @@
             </ul>
             {% else %}
             <li class="nav-item">
-              <a class="nav-link" href="register">Регистрация/Вход</a>
+              <a class="nav-link" href="{% url 'verify_email' %}">Регистрация</a>
             </li>
             {% endif %}
           </ul>
@@ -66,7 +81,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="imageModalLabel">Заголовок модального окна</h5>
+            <h5 class="modal-title" id="imageModalLabel">Техподдержка</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
@@ -131,21 +146,32 @@
 
   <!-- Features -->
   <!-- Features -->
-  <section class="feature--section mt-5">
-    <h2 id="citata"><i>«И где же прятать книги, как не в библиотеке…»</i></h2>
+  <section class="feature--section ">
+    <h2 id="citata"><i>«И где же прятать книги, как не в библиотеке…?»</i></h2>
     <div class="container text-center position-relative">
       <div class="owl-carousel">
-        <div class="for_img"> <img src="https://i.pinimg.com/736x/eb/a4/b2/eba4b2f07e477aa5349e8ef82daa9979.jpg"> </div>
-        <div class="for_img"> <img src="https://cdn1.ozone.ru/s3/multimedia-7/6008818891.jpg"> </div>
-        <div class="for_img"> <img
-            src="https://main-cdn.sbermegamarket.ru/big1/hlr-system/1540686719/600000317422b0.jpeg"> </div>
-        <div class="for_img"> <img
-            src="https://avatars.mds.yandex.net/get-mpic/5068955/img_id6299105914362472296.jpeg/orig"> </div>
-        <div class="for_img"> <img src="https://static10.labirint.ru/books/642323/cover.jpg"> </div>
-        <div class="for_img"> <img src="https://cdn1.ozone.ru/s3/multimedia-x/6597669093.jpg"> </div>
-        <!-- <div> <img src="https://avatars.mds.yandex.net/get-mpic/5146791/img_id3654485426226432204.jpeg/orig"> </div> -->
+        <div class="for_img"> 
+          <img src="https://i.pinimg.com/736x/eb/a4/b2/eba4b2f07e477aa5349e8ef82daa9979.jpg" alt="Картинка 1"> 
+        </div>
+        <div class="for_img"> 
+          <img src="https://cdn1.ozone.ru/s3/multimedia-7/6008818891.jpg" alt="Картинка 2"> 
+        </div>
+        <div class="for_img"> 
+          <img src="https://main-cdn.sbermegamarket.ru/big1/hlr-system/1540686719/600000317422b0.jpeg" alt="Картинка 3"> 
+        </div>
+        <div class="for_img"> 
+          <img src="https://avatars.mds.yandex.net/get-mpic/5068955/img_id6299105914362472296.jpeg/orig" alt="Картинка 4"> 
+        </div>
+        <div class="for_img"> 
+          <img src="https://static10.labirint.ru/books/642323/cover.jpg" alt="Картинка 5"> 
+        </div>
+        <div class="for_img"> 
+          <img src="https://cdn1.ozone.ru/s3/multimedia-x/6597669093.jpg" alt="Картинка 6"> 
+        </div>
       </div>
-      <!-- Кнопки листания -->
+    </div>
+  </section>
+       <!-- Кнопки листания -->
       <!-- <button class="carousel-control-prev" type="button" data-bs-target=".owl-carousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
@@ -155,13 +181,17 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div> -->
-  </section>
+ 
 
-  <section class="feature--section mt-5">
-    <h2 id="about">О нас</h2>
-    <p id="about_us"><i>Добро пожаловать в нашу Цифровую библиотеку — уникальное пространство для любителей чтения и
-        обмена знаниями! Наша платформа создана с целью объединения людей, которые ценят литературу, научные
-        исследования и образовательные материалы. Мы стремимся сделать знания доступными для всех.</i></p>
+  <section class="we--section">
+    <h1 id="about"> О нас</h1>
+    <p id="about_us"><i>Мы рады видеть вас на платформе, созданной для всех любителей чтения и знаний. Наша библиотека — 
+      это уникальное пространство, где каждый может найти что-то интересное для себя: 
+      от увлекательных книг и статей до научных исследований и образовательных материалов.</i></p>
+    <p id="about_us"><i>Мы уверены, что чтение — это не только способ получения информации, но и источник вдохновения, который открывает новые горизонты и возможности. 
+      Наша платформа создана для того, чтобы объединить людей, которые ценят литературу и стремятся к знаниям.</i></p>
+    <p id="about_us"><i>Присоединяйтесь к нам в этом увлекательном путешествии по миру знаний! Исследуйте, делитесь и вдохновляйтесь вместе с нами</i></p>
+    <p id="about_us"><i>С наилучшими пожеланиями, <br> Команда Электронной Библиотеки</i></p>
   </section>
 
   <!-- Add your book -->
@@ -170,7 +200,7 @@
       <div class="addBook--items row">
         <div class="addBook--details col-lg-12">
           <h2>Добавь свою книгу</h2>
-          <p style="color: black;">Помогите нам, внеся свой вклад в более широкий раздел книг</p>
+          <p style="color: black;">Пожалуйста, поддержите нас, добавив свои книги в наш электронный каталог</p>
           {% if user.is_authenticated %}
           <a class="btn btn-outline-success btn-lg" href="{% url 'addBook' user.id %}">Добавь книгу</a>
           {% else %}
@@ -210,15 +240,34 @@
       <div class="footer--items row">
         <div class="footer--details col-lg-12">
           <p>© 2024 Электронная Библиотека. Все права защищены.</p>
+          <p>Если у вас есть вопросы или требуется помощь, пожалуйста, свяжитесь с нашей технической поддержкой по адресу:
+            <span id="mail">khubiyeva_asya@mail.ru</span></p>       
+           
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <div id="foot" class="container text-center mt-4">
-    <p>Если у вас есть вопросы или требуется помощь, пожалуйста, свяжитесь с нашей технической поддержкой по адресу:
-      <span id="mail">khubiyeva_asya@mail.ru</span></p>
+  
+
+
+  {% if user.is_authenticated %}
+  <div class="container text-center ">
+    {% comment %} <h3>Удалить профиль</h3>
+    <p>Если вы хотите удалить свой профиль, нажмите кнопку ниже:</p> {% endcomment %}
+    <form action="{% url 'delete_profile' %}" method="POST">
+      {% csrf_token %}
+      <button id='btn_del' type="submit" >Удалить мой профиль</button>
+    </form>
   </div>
+{% endif %}
+
+
+
+
+
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
@@ -227,12 +276,12 @@
   <script src="{% static 'owlcarousel/owl.carousel.min.js' %}"></script>
   <script src="{% static 'js/moy.js' %}"></script>
 
-  <script>
+ <script>
     $(document).ready(function () {
       $('.owl-carousel').owlCarousel({
         loop: true,
         margin: 10,
-        nav: true,
+        {% comment %} nav: true, {% endcomment %}
         responsive: {
           0: {
             items: 1
@@ -246,7 +295,7 @@
         }
       });
     });
-  </script>
+  </script> 
 </body>
 
 </html>

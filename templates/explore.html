@@ -1,135 +1,169 @@
 {% load static %}
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Библиотека</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/style_12.css' %}"/>
-
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+    
     <style>
+        h2 {
+            color: black;
+            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 3px solid grey;
+        }
+        #explore_ {
+            position: relative;
+            color: black;
+            height: 100vh;
+            width: 100vw;
+        }
+        .card-title {
+            font-weight: 600;
+            margin-bottom: 50px;
+        }
+        #searchInput {
+            border-color: black;
+        }
+        .card {
+            border-color: black;
+        }
 
-      #explore_{        
-        position: relative; /* Устанавливаем относительное позиционирование для контейнера */
-  color: black;
-  height: 100vh; 
-  width: 100vw; 
-      }
-
-      /* #explore_::after {
-  content: ""; 
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); 
-  z-index: 1;
-      } */
-
+        
+        .div_btn {
+            padding-top: 25px;
+        }
+        .book-card {
+            height: 350px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+            margin-top: 20px;
+        }
+        .card-body {
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+        }
+        #block1 {
+            padding-bottom: 20px;
+        }
+        .btn {
+            background-color: #B1C381;
+            border: none;
+            color: black;
+            margin-left: 10px;
+        }
+        .btn:hover {
+            background-color: #526420;         
+            color: white;
+        }
+        #searchInput:focus{
+            outline: 2px solid #b1ff9e;
+        }
     </style>
 </head>
-  <body id="explore_">
+<body id="explore_">
     <!-- Navbar -->
     <section class="navbar--section Asya">
-      <nav class="navbar navbar-expand-lg ">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Электронная Библиотека</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <img src="{% static 'images/vasya.png' %}" alt="">
-                <a class=" nav-link " aria-current="page" href="home">На главную</a>
-              </li>
-              <li class="nav-item">
-                <img src="{% static 'images/books.png' %}" alt="">
-                <a class="nav-link active" href="/explore">Книги</a>
-              </li>
-              {% if user.is_authenticated %}
-              <li class="nav-item">
-                <img src="{% static 'images/logout.png' %}" alt="">
-                <a class="nav-link" href="home">Выход</a>
-              </li>
-              {% else %}
-              <li class="nav-item">
-                <a class="nav-link" href="register">Регистрация/Войти</a>
-              </li>
-              {% endif %}
-            </ul>
-          </div>
-        </div>
-      </nav>
+        <nav class="navbar navbar-expand-lg ">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Электронная Библиотека</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <img src="{% static 'images/vasya.png' %}" alt="">
+                            <a class="nav-link" aria-current="page" href="home">На главную</a>
+                        </li>
+                        <li class="nav-item">
+                            <img src="{% static 'images/books.png' %}" alt="">
+                            <a class="nav-link active" href="/explore">Книги</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <img src="{% static 'images/logout.png' %}" alt="">
+                            <a class="nav-link" href="home">Назад</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="register">Регистрация/Войти</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </section>
 
-    
     <section class="search-section m-5">
-      <div class="container">
-          <input type="text" id="searchInput" class="form-control" placeholder="Поиск по названиям книг и авторам" onkeyup="searchBooks()">
-      </div>
-  </section>
-
-    <section class="explore--education--category m-5 ">
-        <h2>Образование</h2>
-      <div class="container">
-        <div class="row">
-        {% for book in edu_books %}
-
-        <div class="col-lg-4 m-3 book-item">
-          <div class="card" style="height: 350px;">
-              <div class="card-body">
-                  <h5 class="card-title text-center mb-3">{{book.title}}</h5>
-                  <p class="card-text">Описание: {{ book.summary|truncatechars:100 }}</p>
-                  <p class="card-text">Количество страниц: {{book.pages}}</p>
-                  <p class="card-text">Категория: {{book.category}}</p>
-                  <p class="card-text">Кем добавлен: {{book.author}}</p>
-                  <a href="{% url 'viewBook' book.id %}" class="btn btn-primary">Подробнее</a>
-                  <a href="{{book.pdf.url}}" class="btn btn-primary">Читать книгу</a>
-                  {% if book.author_id == user.id %}
-                      <form action="{% url 'deleteBook' book.id %}" method="post" style="display:inline;">
-                          {% csrf_token %} 
-                          <button type="submit" class="btn btn-danger">Удалить</button>
-                      </form>
-                  {% endif %}
-              </div>
-          </div>
-      </div>
-  {% endfor %}
-      </div>
-    </div>
+        <div class="container">
+            <input type="text" id="searchInput" class="form-control" placeholder="Поиск по названиям книг и авторам" onkeyup="searchBooks()">
+        </div>
     </section>
 
-   <section class="explore--education--category m-5 ">
+    <section class="explore--education--category m-5">
         <h2>Художественная литература</h2>
-            <div class="container">
+        <div class="container">
             <div class="row">
-        {% for book in fiction_books %}
-    
-        <div class="col-lg-4 m-3">
-          <div class="card" style="height: 350px;">
-              <div class="card-body">
-                  <h5 class="card-title text-center mb-3">{{book.title}}</h5>
-                  <p class="card-text">Описание: {{ book.summary|truncatechars:100 }}</p>
-                  <p class="card-text">Количество страниц: {{book.pages}}</p>
-                  <p class="card-text">Категория: {{book.category}}</p>
-                  <p class="card-text">Кем добавлен: {{book.author}}</p>
-                  <a href="{% url 'viewBook' book.id %}" class="btn btn-primary">Подробнее</a>
-                  <a href="{{book.pdf.url}}" class="btn btn-primary">Читать книгу</a>
-                  
-                  {% if book.author_id == user.id %}
-                      <form action="{% url 'deleteBook' book.id %}" method="post" style="display:inline;">
-                          {% csrf_token %} 
-                          <button type="submit" class="btn btn-danger">Удалить</button>
-                      </form>
-                  {% endif %}
-              </div>
-          </div>
-      </div>
-        {% endfor %}
-         </div>
+                {% for book in fiction_books %}
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4"> <!-- Используйте mb-4 для отступов между рядами -->
+                    <div class="card book-card">
+                        <div class="card-body">
+                            <h5 class="card-title text-center mb-3" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">{{book.title}}</h5>
+                            <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;"><b>Автор:</b> {{ book.author_name }}</p>
+                            <p class="card-text"><b>Описание:</b> {{ book.summary|truncatechars:100 }}</p>
+                            <p class="card-text"><b>Количество страниц:</b> {{book.pages}}</p>
+                            <div class="div_btn">
+                                <a href="{% url 'viewBook' book.id %}" class="btn btn-primary">Подробнее</a>
+                                <a href="{{book.pdf.url}}" class="btn btn-primary">Читать книгу</a>
+                                {% if book.uploader_id == user %}
+                                <form action="{% url 'deleteBook' book.id %}" method="post" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">Удалить</button>
+                                </form>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="explore--education--category m-5">
+        <h2>Образование</h2>
+        <div class="container">
+            <div class="row">
+                {% for book in edu_books %}
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <div class="card book-card">
+                        <div class="card-body">
+                            <h5 id="block1" class="card-title text-center mb-3" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">{{book.title}}</h5>
+                            <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;"><b>Автор:</b> {{ book.author_name }}</p>
+                            <p class="card-text"><b>Описание:</b> {{ book.summary|truncatechars:100 }}</p>
+                            <p class="card-text"><b>Количество страниц:</b> {{book.pages}}</p>
+                            <div class="div_btn">
+                                <a href="{% url 'viewBook' book.id %}" class="btn btn-primary">Подробнее</a>
+                                <a href="{{book.pdf.url}}" class="btn btn-primary">Читать книгу</a>
+                                {% if book.uploader_id == user %}
+                                <form action="{% url 'deleteBook' book.id %}" method="post" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">Удалить</button>
+                                </form>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </section>
 
@@ -137,61 +171,58 @@
         <h2>Наука</h2>
         <div class="container">
             <div class="row">
-        {% for book in science_books %}
-        
-        <div class="col-lg-4 m-3">
-          <div class="card" style="height: 350px;">
-              <div class="card-body">
-                  <h5 class="card-title text-center mb-3">{{book.title}}</h5>
-                  <p class="card-text">Описание: {{ book.summary|truncatechars:100 }}</p>
-                  <p class="card-text">Количество страниц: {{book.pages}}</p>
-                  <p class="card-text">Категория: {{book.category}}</p>
-                  <p class="card-text">Кем добавлен: {{book.author}}</p>
-                  <a href="{% url 'viewBook' book.id %}" class="btn btn-primary">Подробнее</a>
-                  <a href="{{book.pdf.url}}" class="btn btn-primary">Читать книгу</a>
-                  
-                  {% if book.author_id == user.id %}
-                      <form action="{% url 'deleteBook' book.id %}" method="post" style="display:inline;">
-                          {% csrf_token %} 
-                          <button type="submit" class="btn btn-danger">Удалить</button>
-                      </form>
-                  {% endif %}
-              </div>
-          </div>
-      </div>
-        
-        {% endfor %}
-         </div>
+                {% for book in science_books %}
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <div class="card book-card">
+                        <div class="card-body">
+                            <h5 id="block1" class="card-title text-center mb-3" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">{{book.title}}</h5>
+                            <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;"><b>Автор:</b> {{ book.author_name }}</p>
+                            <p class="card-text"><b>Описание:</b> {{ book.summary|truncatechars:100 }}</p>
+                            <p class="card-text"><b>Количество страниц:</b> {{book.pages}}</p>
+                            <div class="div_btn">
+                                <a href="{% url 'viewBook' book.id %}" class="btn btn-primary">Подробнее</a>
+                                <a href="{{book.pdf.url}}" class="btn btn-primary">Читать книгу</a>
+                                {% if book.uploader_id == user %}
+                                <form action="{% url 'deleteBook' book.id %}" method="post" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">Удалить</button>
+                                </form>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
- 
+
     <script>
-      function searchBooks() {
-          var input, filter, cards, title, author, i, txtValue;
-          input = document.getElementById('searchInput');
-          filter = input.value.toLowerCase();
-          cards = document.getElementsByClassName('book-item');
-  
-          for (i = 0; i < cards.length; i++) {
-              title = cards[i].getElementsByClassName("card-title")[0];
-              author = cards[i].getElementsByClassName("card-text")[3]; // Кем добавлен
-  
-              if (title || author) {
-                  txtValue = title.textContent || title.innerText;
-                  var authorValue = author.textContent || author.innerText;
-  
-                  if (txtValue.toLowerCase().indexOf(filter) > -1 || authorValue.toLowerCase().indexOf(filter) > -1) {
-                      cards[i].style.display = "";
-                  } else {
-                      cards[i].style.display = "none";
-                  }
-              }
-          }
-      }
-  </script>
-  
- 
-  </body>
+        function searchBooks() {
+            var input, filter, cards, title, author, i, txtValue;
+            input = document.getElementById('searchInput');
+            filter = input.value.toLowerCase();
+            cards = document.getElementsByClassName('book-card'); // Измените на book-card
+    
+            for (i = 0; i < cards.length; i++) {
+                title = cards[i].getElementsByClassName("card-title")[0];
+                author = cards[i].getElementsByClassName("card-text")[1]; // Измените на 1, чтобы получить нужный элемент
+    
+                if (title && author) { // Убедитесь, что title и author существуют
+                    txtValue = title.textContent || title.innerText;
+                    var authorValue = author.textContent || author.innerText;
+    
+                    if (txtValue.toLowerCase().indexOf(filter) > -1 || authorValue.toLowerCase().indexOf(filter) > -1) {
+                        cards[i].style.display = "";
+                    } else {
+                        cards[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+
+</body>
 </html>

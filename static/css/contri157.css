@@ -1,0 +1,26 @@
+.btn {
+    background-color: #B1C381;
+    border: none;
+    color: black;
+}
+
+.btn:hover {
+    background-color: #526420;
+    border: 1px solid black;
+    color: white;
+
+}
+
+.contri--section {
+    padding: 5% 7%;
+    /* font-weight: 600; */
+}
+
+.card {
+    width: 100%;
+}
+
+#h3 {
+    padding-bottom: 45px;
+    border-bottom: 2px solid black;
+}
