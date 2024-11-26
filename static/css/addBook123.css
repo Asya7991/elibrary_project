@@ -1,0 +1,15 @@
+.add--section {
+    padding: 5% 7%;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.add--section form {
+    display: flex;
+    flex-direction: column;
+    line-height: 2rem;
+}
+
+.add--section .form-control {
+    margin-bottom: 25px;
+}

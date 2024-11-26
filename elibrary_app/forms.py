@@ -3,8 +3,8 @@ from .models import EBooksModel
 
 class EBooksForm(forms.ModelForm):
     CATEGORY_CHOICES = [
-        ('Образование', 'Образование'),
         ('Художественная литература', 'Художественная литература'),
+        ('Образование', 'Образование'),       
         ('Наука', 'Наука'),
         # Add more categories as needed        
     ]
@@ -16,10 +16,10 @@ class EBooksForm(forms.ModelForm):
         fields = ['title', 'author_name', 'summary', 'pages', 'pdf', 'category']
         labels = {
             "title": "Название книги",
-            "author_name": "Автор",
+            "author_name": "Автор книги",
             "summary":"Краткое содержание",
             "pages":"Количество страниц",
-            "pdf":"Пдф",
+            "pdf":"Загрузить книгу",
             "category":"Категория",
         }
 
@@ -28,7 +28,7 @@ class EBooksForm(forms.ModelForm):
         self.fields['title'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Введите название',})
         self.fields['author_name'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Укажите автора',})
         self.fields['pages'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Укажите количество страниц'})
-        self.fields['pdf'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Загрузите файл в формате pdf'})
+        self.fields['pdf'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Загрузите файл'})
         self.fields['category'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Выберите нужную категорию'})
         self.fields['summary'].widget.attrs.update({'class': 'form-control', 'placeholder': 'О чём книга?'})
         

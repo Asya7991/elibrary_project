@@ -1,30 +1,60 @@
-<div class="feature--items row">
-    <div class="feature--item col-lg-4 col-md-12">
-      <div class="feature--icon">
-        <img width="50" height="50" 
-             src="https://img.icons8.com/ios-filled/50/book.png" alt="book"/>
-      </div>
-      <div class="feature--details">
-        <h4>Книги</h4>
-      </div>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap Demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+    <style>
+        .feature--item {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .feature--item:hover {
+            background-color: #f8f9fa; /* светлый фон при наведении */
+            transition: background-color 0.3s; /* плавный переход */
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Книги</a>
+            <a class="navbar-brand" href="#">На главную</a>
+        </div>
+    </nav>
+
+    <!-- Feature Items -->
+    <div class="feature--items row">
+        <div class="feature--item col-lg-4 col-md-12">
+            <div class="feature--icon">
+                <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/book.png" alt="book"/>
+            </div>
+            <div class="feature--details">
+                <h4>Книги</h4>
+            </div>
+        </div>
+        <div class="feature--item col-lg-4 col-md-12">
+            <div class="feature--icon">
+                <img width="64" height="64" src="https://img.icons8.com/external-victoruler-solid-victoruler/64/external-read-education-and-school-victoruler-solid-victoruler.png" alt="Читать"/>
+            </div>
+            <div class="feature--details">
+                <h4>Читать</h4>
+            </div>
+        </div>
+        <div class="feature--item col-lg-4 col-md-12">
+            <div class="feature--icon">
+                <img width="64" height="64" src="https://img.icons8.com/pastel-glyph/64/download--v1.png" alt="Загрузить"/>
+            </div>
+            <div class="feature--details">
+                <h4>Загрузить</h4>
+            </div>
+        </div>
     </div>
-    <div class="feature--item col-lg-4 col-md-12">
-      <div class="feature--icon">
-        <img width="64" height="64" 
-             src="https://img.icons8.com/external-victoruler-solid-victoruler/64/external-read-education-and-school-victoruler-solid-victoruler.png" alt="external-read-education-and-school-victoruler-solid-victoruler"/>
-      </div>
-      <div class="feature--details">
-        <h4>Читать</h4>
-      </div>
-    </div>
-    <div class="feature--item col-lg-4 col-md-12">
-      <div class="feature--icon">
-        <img width="64" height="64" src="https://img.icons8.com/pastel-glyph/64/download--v1.png" 
-             alt="download--v1"/>
-      </div>
-      <div class="feature--details">
-        <h4>Загрузить</h4>
-        
-      </div>
-    </div>
-  </div>
+
+    <!-- Footer -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

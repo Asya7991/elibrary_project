@@ -18,6 +18,7 @@
       margin-left: 55px;
     }
 
+    
     #myButton {
       background-color: #86c277;
       border: 0px;
@@ -25,6 +26,7 @@
       color: black;
       font-size: 18px;
       font-weight: 500;
+      margin-top: 20px;
     }
 
     #myButton:hover {
@@ -41,7 +43,6 @@
       font-weight: 500;
       font-size: 20px;
       text-decoration: none;
-
     }
 
     #word:hover {
@@ -53,18 +54,24 @@
       text-align: center;
       padding: 0;
       font-size: 50px;
-      margin-bottom: 60px;
+      margin-top: 10px;
+      margin-bottom: 30px;
       color: #ffffff;
       font-weight: bold;
     }
+
+    .error-message {
+      color: red; /* Цвет текста сообщения об ошибке */
+      margin-top: 0; /* Отступ сверху для сообщения */
+      padding: 0;
+    }
   </style>
 </head>
+
 <div class="container" style="margin-bottom: 70px;">
   <h2 class="registration-title">ВХОД</h2>
   <form method="POST" action="{% url 'login' %}" class="register--form">
     {% csrf_token %}
-    <!-- Section: Design Block -->
-    <!-- Jumbotron -->
     <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
       <div class="container">
         <div class="row gx-lg-5 align-items-center">
@@ -73,45 +80,45 @@
               Лучшее место <br />
               <span id="text_l" class="text-primary">для ваших книжных предпочтений</span>
             </h1>
-
           </div>
 
           <div class="col-lg-6 mb-5 mb-lg-0">
             <div class="card">
               <div class="card-body py-5 px-md-5">
-                <form>
-                  <!-- 2 column grid layout with text inputs for the first and last names -->
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                  <input type="email" id="form3Example3" class="form-control" placeholder="Укажите Ваш e-mail" name="email" />
+                  <label class="form-label" for="form3Example3">E-mail адрес</label>
+                </div>
 
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                  <input type="password" id="form3Example4" class="form-control" placeholder="Напишите пароль" name="password" />
+                  <label class="form-label" for="form3Example4">Пароль</label>
+                </div>
 
-                  <!-- Email input -->
-                  <div class="form-outline mb-4">
-                    <input type="email" id="form3Example3" class="form-control" placeholder="Укажите Ваш e-mail"
-                      name="email" />
-                    <label class="form-label" for="form3Example3">E-mail адрес</label>
+                <!-- Error message -->
+                {% if messages %}
+                  <div class="error-message">
+                    {% for message in messages %}
+                      {{ message }}
+                    {% endfor %}
                   </div>
+                {% endif %}
 
-                  <!-- Password input -->
-                  <div class="form-outline mb-4">
-                    <input type="password" id="form3Example4" class="form-control" placeholder="Напишите пароль"
-                      name="password" />
-                    <label class="form-label" for="form3Example4">Пароль</label>
-                  </div>
+                <!-- Submit button -->
+                <button id="myButton" type="submit" class="btn btn-primary btn-block mb-4">
+                  Войти
+                </button>
+                <p>Нет аккаунта? <a id="word" href="{% url 'verify_email' %}">Назад</a></p> 
+                <p><a id="word" href="{% url 'reset_password' %}">Забыли пароль?</a></p>
 
-                  <!-- Submit button -->
-                  <button id="myButton" type="submit" class="btn btn-primary btn-block mb-4">
-                    Войти
-                  </button>
-                  <p>Нет аккаунта? <a id="word" href="{% url 'register' %}">Регистрация</a></p>
+                
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </form>
 </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- Jumbotron -->
-
-<!-- Section: Design Block -->
-</form>

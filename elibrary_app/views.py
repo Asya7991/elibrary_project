@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from elibrary_app.forms import EBooksForm
 from elibrary_app.models import EBooksModel
-from django.contrib.auth.models import User,auth
+from django.contrib.auth.models import User, auth
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.mail import send_mail
@@ -49,14 +49,17 @@ def Login(request):
         return render(request, 'login.html')
 
 
+
 def home(request):
    return render(request, 'home.html')
 
+
 def explore(request):
-    edu_books = EBooksModel.objects.filter(category='Образование')
-    fiction_books = EBooksModel.objects.filter(category='Художественная литература')
-    science_books = EBooksModel.objects.filter(category='Наука')
-    return render(request, 'explore.html',{'edu_books':edu_books,'fiction_books':fiction_books,'science_books':science_books})
+    edu_books = EBooksModel.objects.filter(category='Образование').order_by('title')
+    fiction_books = EBooksModel.objects.filter(category='Художественная литература').order_by('title')
+    science_books = EBooksModel.objects.filter(category='Наука').order_by('title')
+    return render(request, 'explore.html', {'edu_books': edu_books, 'fiction_books': fiction_books, 'science_books': science_books})
+
 
 @login_required
 def addBook(request,user_id):
@@ -66,7 +69,7 @@ def addBook(request,user_id):
         if form.is_valid():
             book = form.save(commit=False)
             book.author = user.first_name + " " + user.last_name
-            book.author_id = user.id
+            book.uploader_id = user
             print(book.author)
             book.save()
             print()
@@ -83,8 +86,10 @@ def addBook(request,user_id):
     return render(request, 'addBook.html', {'form': form})
 
 
-def contri(request,user_id):
-    books = EBooksModel.objects.filter(uploader=user_id)
+def contri(request, user_id):
+    user = User.objects.get(id=user_id)
+    books = EBooksModel.objects.filter(uploader_id=user)
+    print(f"Найдено книг: {books.count()}")
     return render(request, 'contri.html', {'books': books})
 
 
@@ -92,12 +97,21 @@ def logout(request):
     auth.logout(request)
     return redirect('home')
 
-def deleteBook(request,book_id):
-    print(request)
-    print(book_id)
-    book = EBooksModel.objects.get(id=book_id)
+
+
+from django.shortcuts import get_object_or_404
+from django.contrib import messages
+
+def deleteBook(request, book_id):
+    print(f"Попытка удалить книгу с ID: {book_id}")
+    book = get_object_or_404(EBooksModel, id=book_id)
     book.delete()
+    messages.success(request, "Книга успешно удалена.")
+    # print("Книга удалена.")
     return redirect('home')
+
+
+
 
 def editBook(request,book_id):
     book = EBooksModel.objects.get(id=book_id)
@@ -117,8 +131,10 @@ def editBook(request,book_id):
         form = EBooksForm(instance=book)
     return render(request, 'editBook.html', {'form': form,'book':book})
 
-def viewBook(request,book_id):
-    book = EBooksModel.objects.get(id=book_id)
+from django.shortcuts import get_object_or_404
+
+def viewBook(request, book_id):
+    book = get_object_or_404(EBooksModel, id=book_id)
     book.summary = book.summary.replace('\n', '<br/>')
     return render(request, 'viewBook.html', {'book': book})
 
@@ -198,3 +214,70 @@ def login_view(request):
 
 def pong(request):
     return JsonResponse({"message": "pong"})
+
+
+
+from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+
+@login_required
+def delete_profile(request):
+    if request.method == 'POST':
+        user = request.user
+        user.delete()  # Удаляем пользователя
+        return redirect('home')  # Перенаправляем на главную страницу
+    return redirect('home')  # Если не POST, перенаправляем на главную
+
+
+
+
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.http import urlsafe_base64_decode
+from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_bytes
+from django.template.loader import render_to_string
+from django.utils.translation import gettext as _
+from django.contrib.sites.shortcuts import get_current_site
+from django.views.decorators.http import require_POST
+
+def reset_password(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        try:
+            user = User.objects.get(username=email)
+            subject = "Сброс пароля"
+            email_template_name = "elibrary_app/password_reset_email.html"
+            context = {
+                "email": user.username,
+                'domain': get_current_site(request).domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': default_token_generator.make_token(user),
+            }
+            email = render_to_string(email_template_name, context)
+            send_mail(subject, email, settings.EMAIL_HOST_USER, [user.username])
+            messages.success(request, _('Письмо для сброса пароля было отправлено на вашу почту.'))
+        except User.DoesNotExist:
+            messages.error(request, _('Пользователь с таким email не найден.'))
+        return render(request, 'elibrary_app/reset_password.html')
+
+    return render(request, 'elibrary_app/reset_password.html')
+
+def reset_password_confirm(request, uidb64, token):
+    try:
+        uid = urlsafe_base64_decode(uidb64).decode()
+        user = User.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+
+    if user is not None and default_token_generator.check_token(user, token):
+        if request.method == 'POST':
+            new_password = request.POST['new_password']
+            user.set_password(new_password)
+            user.save()
+            messages.success(request, _('Пароль успешно сброшен.'))
+            return redirect('login')
+        return render(request, 'elibrary_app/reset_password_confirm.html', {'validlink': True})
+
+    messages.error(request, _('Ссылка для сброса пароля недействительна.'))
+    return render(request, 'elibrary_app/reset_password_confirm.html', {'validlink': False})

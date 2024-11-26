@@ -12,9 +12,9 @@
         }
 
         body {
-            background-image: url(static/images/1.jpg);
-            background-size: cover; /* Изображение будет масштабироваться, чтобы покрыть весь экран */
-            background-position: center; /* Центрируем изображение */
+            background-image: url(static/images/1.jpg) !important;
+            background-size: cover;
+            background-position: center;
             background-repeat: no-repeat;
             height: 100vh;
             display: flex;
@@ -39,19 +39,16 @@
             width: 100%;
             max-width: 500px;
             text-align: center;
-            position: relative; /* Чтобы контейнер был выше наложения */
-            z-index: 2; /* Контейнер выше наложения */
+            position: relative; 
+            z-index: 2; 
         }
 
         h1 {
-            color: #fff;
-            margin-bottom: 1.5rem;
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            white-space: nowrap; 
-           
-          
-        }
+    color: #fff;
+    margin-bottom: 1rem; /* Уменьшите отступ снизу */
+    font-size: 35px; /* Уменьшите размер шрифта */
+    white-space: nowrap; /* Убедитесь, что текст не переносится */
+}
 
         .input-group {
             margin-bottom: 1.5rem;
@@ -81,7 +78,7 @@
             border-radius: 6px;
             cursor: pointer;
             font-size: 20px;
-            transition: background 0.3s ease, color 0.3s ease; /* Добавьте transition для цвета */
+            transition: background 0.3s ease, color 0.3s ease; 
             width: 100%;
         }
 
@@ -142,61 +139,80 @@
             margin-top: 1rem;
         }
 
-.error-message {
-    color: #000000;
-    margin: 0.5rem 0;
-    font-size: 0.9rem;
-}
+        .error-message {
+            color: #000000;
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+        }
 
-/* Модальное окно */
-.modal {
-    display: none; 
-    position: fixed; 
-    z-index: 1000; 
-    left: 0;
-    top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgba(0, 0, 0, 0.7); 
-    justify-content: center;
-    align-items: center;
-}
+        /* Модальное окно */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0, 0, 0, 0.7); 
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%; 
+            max-width: 900px; 
+            position: relative; 
+        }
 
-.modal-content {
-    margin: auto;
-    display: block;
-    width: 80%; 
-    max-width: 900px; 
-    position: relative; 
-}
+        .overlay-text {
+            position: absolute; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            color: white; 
+            font-size: 2rem; 
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+            z-index: 2; 
+            text-align: center;
+        }
 
-.close {
-    position: absolute;
-    top: 50px; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
-    background-color: rgba(255, 255, 255, 0.8); 
-    width: 70px; 
-    height: 55px;
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    color: black; 
-    font-size: 40px; 
-    cursor: pointer;
-    border: none; 
-    outline: none; 
-}
+        #h4 {
+            margin: 0 110px;  
+            color: rgb(243, 243, 243);
+        }
 
-.close:hover {
-    background-color: #ff5b5b; 
-    color: white;
-}
+        .m_txt {
+            font-size: 25px;
+            margin: 35px 110px 25px; 
+            color: rgb(252, 252, 252);
+        }
 
+        .close {
+            position: absolute;
+            top: 30px; 
+            background-color: rgba(255, 255, 255, 0.5); 
+            width: 70px; 
+            height: 55px;
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            color: black; 
+            font-size: 40px; 
+            cursor: pointer;
+            border: none; 
+            outline: none; 
+            z-index: 3; 
+        }
 
+        .close:hover {
+            background-color: #ff5b5b; 
+            color: white;
+        }
 
-.message-modal {
+        .message-modal {
             display: none; 
             position: fixed; 
             z-index: 1000; 
@@ -215,7 +231,8 @@
             padding: 20px;
             border-radius: 10px;
             text-align: center;
-            width: 300px;
+            width: 80%; /* Изменено на 80% для адаптивности */
+            max-width: 400px; /* Максимальная ширина для больших экранов */
         }
 
         .message-close {
@@ -226,51 +243,74 @@
             border-radius: 5px;
             cursor: pointer;
         }
-</style>
+
+        /* Адаптивные стили */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem; /* Уменьшение размера заголовка на мобильных устройствах */
+            }
+
+            .m_txt {
+                font-size: 18px; /* Уменьшение размера текста в модальном окне */
+            }
+
+            .close {
+                font-size: 30px; /* Уменьшение размера кнопки закрытия */
+                width: 50px; /* Уменьшение ширины кнопки закрытия */
+            }
+
+            .message-content {
+                width: 90%; /* Увеличение ширины сообщения на мобильных устройствах */
+            }
+        }
+    </style>
 </head>
 
 <body>
-<div class="overlay"></div> <!-- Добавлено полупрозрачное наложение -->
+<div class="overlay"></div>
 
 <div class="container">
-<h1>Подтверждение e-mail</h1>
+    <h1>Подтверждение e-mail</h1>
 
-<!-- Форма для ввода email -->
-<div id="email-form" class="input-group">
-    <input type="email" id="email-input" placeholder="Введите ваш email">
-    <button onclick="sendVerificationCode()">Отправить код</button>
-</div>
+    <!-- Форма для ввода email -->
+    <div id="email-form" class="input-group">
+        <input type="email" id="email-input" placeholder="Введите ваш email">
+        <button onclick="sendVerificationCode()">Отправить код</button>
+    </div>
 
-<!-- Форма для верификации -->
-<div id="verification-form" style="display: none;" class="input-group">
-    <form method="post">
-        {% csrf_token %}
-        <input type="hidden" id="email-hidden" name="email">
-        <input type="text" name="code" placeholder="Введите код подтверждения">
-        <button type="submit">Подтвердить</button>
-    </form>
-</div>
+    <!-- Форма для верификации -->
+    <div id="verification-form" style="display: none;" class="input-group">
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" id="email-hidden" name="email">
+            <input type="text" name="code" placeholder="Введите код подтверждения">
+            <button type="submit">Подтвердить</button>
+        </form>
+    </div>
 
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
 
-
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
-
-<div class="login-link">
-    <p>Уже есть аккаунт?</p>
-    <a href="{% url 'login' %}">Войти</a>
-</div>
+    <div class="login-link">
+        <p>Уже есть аккаунт?</p>
+        <a href="{% url 'login' %}">Войти</a>
+    </div>
 </div>
 
 <!-- Модальное окно с изображением -->
 <div id="imageModal" class="modal">
     <span class="close" onclick="closeModal()">&times;</span>
     <img class="modal-content" id="modalImage" src="static/images/1.jpg" alt="Пример изображения">
+    <div class="overlay-text"> 
+        <h4 id='h4'>Уважаемый гость!</h4>
+        <p class="m_txt">Добро пожаловать в нашу Электронную библиотеку!</p>
+        <p class="m_txt">Для того, чтобы Вы смогли зайти на сайт, пожалуйста, зарегистрируйтесь! Для этого введите свой адрес электронной почты, чтобы мы могли проверить его.</p> 
+    </div>
 </div>
 
 <!-- Модальное окно для сообщений -->
@@ -286,9 +326,7 @@
 window.onload = function() {
     setTimeout(function() {
         document.getElementById('imageModal').style.display = "flex"; // Используем flex для центрирования
-    }, 
-    // 2000
-);
+    }, 2000); // Задержка в 2 секунды
 }
 
 // Закрыть модальное окно
@@ -334,9 +372,7 @@ function sendVerificationCode() {
         }
     });
 }
-
 </script>
-
 
 </body>
 </html>
