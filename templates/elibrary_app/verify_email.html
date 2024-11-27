@@ -13,8 +13,13 @@
 
         body {
             background-image: url(static/images/1.jpg) !important;
+<<<<<<< HEAD
             background-size: cover;
             background-position: center;
+=======
+            background-size: cover; /* Изображение будет масштабироваться, чтобы покрыть весь экран */
+            background-position: center; /* Центрируем изображение */
+>>>>>>> ee8bc57db7e8fc09166f0be4d402d3880be3d4ef
             background-repeat: no-repeat;
             height: 100vh;
             display: flex;
@@ -171,6 +176,7 @@
             position: relative; 
         }
 
+<<<<<<< HEAD
         .overlay-text {
             position: absolute; 
             top: 50%; 
@@ -182,6 +188,49 @@
             z-index: 2; 
             text-align: center;
         }
+=======
+.overlay-text {
+    position: absolute; /* Позиционирование относительно родителя */
+    top: 50%; /* Центрируем по вертикали */
+    left: 50%; /* Центрируем по горизонтали */
+    transform: translate(-50%, -50%); /* Центрируем текст */
+    color: white; /* Цвет текста */
+    font-size: 2rem; /* Размер шрифта */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Тень для текста */
+    z-index: 2; /* Убедитесь, что текст выше изображения */
+    text-align: center;
+   }
+
+#h4{
+    margin: 0 110px 0 145px;  
+    color: rgb(243, 243, 243);
+}
+
+.m_txt{
+    font-size: 25px;
+    margin: 35px 110px 25px 145px;
+    color: rgb(252, 252, 252);
+}
+
+
+
+.close {
+    position: absolute;
+    top: 30px; /* Установите нужное значение, чтобы кнопка была выше изображения */
+    background-color: rgba(255, 255, 255, 0.5); /* Прозрачный фон для кнопки */
+    width: 70px; 
+    height: 55px;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    color: black; 
+    font-size: 40px; 
+    cursor: pointer;
+    border: none; 
+    outline: none; 
+    z-index: 3; /* Убедитесь, что z-index выше, чем у изображения */
+}
+>>>>>>> ee8bc57db7e8fc09166f0be4d402d3880be3d4ef
 
         #h4 {
             margin: 0 110px;  
@@ -309,12 +358,25 @@
 <!-- Модальное окно с изображением -->
 <div id="imageModal" class="modal">
     <span class="close" onclick="closeModal()">&times;</span>
+<<<<<<< HEAD
     <img class="modal-content" id="modalImage" src="static/images/main.jpg" alt="Приветствие">
     <!--<div class="overlay-text">  -->
         <!-- <h4 id='h4'>Уважаемый гость!</h4>
         <p class="m_txt">Добро пожаловать в нашу Электронную библиотеку!</p>
         <p class="m_txt">Для того, чтобы Вы смогли зайти на сайт, пожалуйста, зарегистрируйтесь! Для этого введите свой адрес электронной почты, чтобы мы могли проверить его.</p> 
     </div>  -->
+=======
+    <img class="modal-content" id="modalImage" src="static/images/1.jpg" alt="Пример изображения">
+    <div class="overlay-text"> 
+        <h4 id='h4'>Уважаемый гость!</h4>
+        <p class="m_txt" >Добро пожаловать в нашу Электронную библиотеку!</p>
+        <p class="m_txt">Для того, чтобы Вы смогли зайти на сайт, пожалуйста, зарегистрируйтесь! Для этого введите свой адрес электронной почты, чтобы мы могли проверить его.</p> 
+        <!-- <p class="m_txt" >Добро пожаловать в нашу Электронную библиотеку — уникальное пространство для любителей чтения и
+            обмена знаниями! Наша платформа создана с целью объединения людей, которые ценят литературу, научные
+            исследования и образовательные материалы. Мы стремимся сделать знания доступными для всех.</p>
+        <p class="m_txt">Для того, чтобы Вы смогли зайти на сайт, пожалуйста, зарегистрируйтесь! Для этого введите свой адрес электронной почты, чтобы мы могли проверить его.</p>  -->
+    </div>
+>>>>>>> ee8bc57db7e8fc09166f0be4d402d3880be3d4ef
 </div>
 
 <!-- Модальное окно для сообщений -->

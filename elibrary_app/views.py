@@ -107,7 +107,11 @@ def deleteBook(request, book_id):
     book = get_object_or_404(EBooksModel, id=book_id)
     book.delete()
     messages.success(request, "Книга успешно удалена.")
+<<<<<<< HEAD
     # print("Книга удалена.")
+=======
+    print("Книга удалена.")
+>>>>>>> ee8bc57db7e8fc09166f0be4d402d3880be3d4ef
     return redirect('home')
 
 
@@ -225,6 +229,7 @@ from django.contrib.auth.models import User
 def delete_profile(request):
     if request.method == 'POST':
         user = request.user
+<<<<<<< HEAD
         user.delete() 
         return redirect('home')
     return redirect('home')  
@@ -281,3 +286,10 @@ def reset_password_confirm(request, uidb64, token):
 
     messages.error(request, _('Ссылка для сброса пароля недействительна.'))
     return render(request, 'elibrary_app/reset_password_confirm.html', {'validlink': False})
+=======
+        user.delete()  # Удаляем пользователя
+        return redirect('home')  # Перенаправляем на главную страницу
+    return redirect('home')  # Если не POST, перенаправляем на главную
+
+
+>>>>>>> ee8bc57db7e8fc09166f0be4d402d3880be3d4ef

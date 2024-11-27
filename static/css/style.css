@@ -75,6 +75,7 @@ body {
   cursor: pointer;
 }
 
+<<<<<<< HEAD
 
 .icon {
   width: 30px;
@@ -89,6 +90,20 @@ body {
   color: #000000;
 }
 
+=======
+.modal-header {
+  background-color: #ffffff;
+  /* Цвет фона заголовка модального окна */
+  color: #000000;
+}
+
+/* .modal-footer .btn-secondary {
+  background-color: #0a3a63;
+
+  color: #ffffff;
+} */
+
+>>>>>>> ee8bc57db7e8fc09166f0be4d402d3880be3d4ef
 
 
 /* Стили для СЕКЦИЙ */
@@ -114,7 +129,13 @@ body {
   width: 100%;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.7);
+<<<<<<< HEAD
   z-index: -1;
+=======
+  /* Цвет плёнки */
+  z-index: -1;
+  /* Установите z-index ниже, чем у содержимого секции */
+>>>>>>> ee8bc57db7e8fc09166f0be4d402d3880be3d4ef
 }
 
 
@@ -146,26 +167,60 @@ body {
 
 .feature--section {
   margin: 20px 0;
+<<<<<<< HEAD
+=======
+  /* Уменьшите отступы, если нужно */
+>>>>>>> ee8bc57db7e8fc09166f0be4d402d3880be3d4ef
 }
 
 .for_img {
   width: 100%;
   height: 500px;
+<<<<<<< HEAD
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0;
+=======
+  /* Установите фиксированную высоту для всех изображений */
+  overflow: hidden;
+  /* Скрыть переполнение */
+  display: flex;
+  /* Используем flexbox для центрирования */
+  justify-content: center;
+  /* Центрируем содержимое по горизонтали */
+  align-items: center;
+  /* Центрируем содержимое по вертикали */
+  margin: 0;
+  /* Убедитесь, что отступы отсутствуют */
+>>>>>>> ee8bc57db7e8fc09166f0be4d402d3880be3d4ef
 }
 
 .for_img img {
   width: 100%;
+<<<<<<< HEAD
   height: 100%;
   object-fit: cover;
   border-radius: 5px;
 }
 
 
+=======
+  /* Ширина 100% для заполнения контейнера */
+  height: 100%;
+  /* Высота 100% для заполнения контейнера */
+  object-fit: cover;
+  /* Заполнение контейнера, может обрезать изображения */
+  border-radius: 5px;
+  /* Закругление углов изображений */
+}
+
+
+
+
+
+>>>>>>> ee8bc57db7e8fc09166f0be4d402d3880be3d4ef
 #citata {
   text-align: center;
   color: rgb(0, 0, 0);
@@ -174,6 +229,11 @@ body {
 }
 
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> ee8bc57db7e8fc09166f0be4d402d3880be3d4ef
 /* Секция О НАС */
 
 #about_us {

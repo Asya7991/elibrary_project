@@ -5,7 +5,12 @@ class EBooksForm(forms.ModelForm):
     CATEGORY_CHOICES = [
         ('Художественная литература', 'Художественная литература'),
         ('Образование', 'Образование'),       
+<<<<<<< HEAD
         ('Наука', 'Наука'),           
+=======
+        ('Наука', 'Наука'),
+        # Add more categories as needed        
+>>>>>>> ee8bc57db7e8fc09166f0be4d402d3880be3d4ef
     ]
 
     category = forms.ChoiceField(label="Категория", choices=CATEGORY_CHOICES)
@@ -15,10 +20,14 @@ class EBooksForm(forms.ModelForm):
         fields = ['title', 'author_name', 'summary', 'pages', 'pdf', 'category']
         labels = {
             "title": "Название книги",
-            "author_name": "Автор",
+            "author_name": "Автор книги",
             "summary":"Краткое содержание",
             "pages":"Количество страниц",
+<<<<<<< HEAD
             "pdf":"Загрузите файл",
+=======
+            "pdf":"Загрузить книгу",
+>>>>>>> ee8bc57db7e8fc09166f0be4d402d3880be3d4ef
             "category":"Категория",
         }
 
