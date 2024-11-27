@@ -28,6 +28,15 @@
       color: white;
       border: none;
     }  
+
+    .icon {
+      width: 24px;  
+      height: 24px;
+      display: inline-block; 
+      margin-right: 8px; 
+  }
+
+
   </style>
 
 </head>
@@ -46,20 +55,20 @@
           <ul class="navbar-nav">
             <ul class="nav">
               <li class="nav-item">
-                <img src="{% static 'images/vasya.png' %}" alt="">
+                <img src="{% static 'images/vasya.png' %}" alt="" class="icon">
                 <a class="active nav-link" aria-current="page" href="home">На главную</a>
               </li>
               <li class="nav-item">
-                <img src="{% static 'images/books.png' %}" alt="">
+                <img src="{% static 'images/books.png' %}" alt="" class="icon">
                 <a class="nav-link" href="explore">Книги</a>
               </li>
               {% if user.is_authenticated %}
               <li class="nav-item">
-                <img src="{% static 'images/downloads.png' %}" alt="">
+                <img src="{% static 'images/downloads.png' %}" alt="" class="icon">
                 <a class="nav-link" href="{% url 'contri' user.id %}">Вложения</a>
               </li>
-              <li class="nav-item d-flex align-items-center"> <!-- Используем d-flex для выравнивания -->
-                <img src="{% static 'images/logout.png' %}" alt="">
+              <li class="nav-item d-flex align-items-center"> 
+                <img src="{% static 'images/exit1.png' %}" alt="" class="icon">
                 <a class="nav-link" href="{% url 'logout' %}">Выход</a>
               </li>
               <img src="{% static 'images/icons8.png' %}" alt="Clickable Image" class="clickable-image left-icon"
@@ -68,6 +77,7 @@
             </ul>
             {% else %}
             <li class="nav-item">
+              <img src="{% static 'images/chain.png' %}" alt="">
               <a class="nav-link" href="{% url 'verify_email' %}">Регистрация</a>
             </li>
             {% endif %}

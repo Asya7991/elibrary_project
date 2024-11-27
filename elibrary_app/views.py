@@ -225,9 +225,9 @@ from django.contrib.auth.models import User
 def delete_profile(request):
     if request.method == 'POST':
         user = request.user
-        user.delete()  # Удаляем пользователя
-        return redirect('home')  # Перенаправляем на главную страницу
-    return redirect('home')  # Если не POST, перенаправляем на главную
+        user.delete() 
+        return redirect('home')
+    return redirect('home')  
 
 
 

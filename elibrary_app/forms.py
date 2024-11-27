@@ -5,8 +5,7 @@ class EBooksForm(forms.ModelForm):
     CATEGORY_CHOICES = [
         ('Художественная литература', 'Художественная литература'),
         ('Образование', 'Образование'),       
-        ('Наука', 'Наука'),
-        # Add more categories as needed        
+        ('Наука', 'Наука'),           
     ]
 
     category = forms.ChoiceField(label="Категория", choices=CATEGORY_CHOICES)
@@ -16,10 +15,10 @@ class EBooksForm(forms.ModelForm):
         fields = ['title', 'author_name', 'summary', 'pages', 'pdf', 'category']
         labels = {
             "title": "Название книги",
-            "author_name": "Автор книги",
+            "author_name": "Автор",
             "summary":"Краткое содержание",
             "pages":"Количество страниц",
-            "pdf":"Загрузить книгу",
+            "pdf":"Загрузите файл",
             "category":"Категория",
         }
 
@@ -30,7 +29,7 @@ class EBooksForm(forms.ModelForm):
         self.fields['pages'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Укажите количество страниц'})
         self.fields['pdf'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Загрузите файл'})
         self.fields['category'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Выберите нужную категорию'})
-        self.fields['summary'].widget.attrs.update({'class': 'form-control', 'placeholder': 'О чём книга?'})
+        self.fields['summary'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Укажите содержание'})
         
         # Make all fields required
         for field_name, field in self.fields.items():

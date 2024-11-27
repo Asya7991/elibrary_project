@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Verify Email</title>
+    <title>Подтверждение e-mail</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         * {
@@ -137,6 +137,10 @@
 
         #verification-form {
             margin-top: 1rem;
+        }
+
+        #imageModal {
+            display: flex; /* Изменено с display: none; на display: flex; */
         }
 
         .error-message {
@@ -305,12 +309,12 @@
 <!-- Модальное окно с изображением -->
 <div id="imageModal" class="modal">
     <span class="close" onclick="closeModal()">&times;</span>
-    <img class="modal-content" id="modalImage" src="static/images/1.jpg" alt="Пример изображения">
-    <div class="overlay-text"> 
-        <h4 id='h4'>Уважаемый гость!</h4>
+    <img class="modal-content" id="modalImage" src="static/images/main.jpg" alt="Приветствие">
+    <!--<div class="overlay-text">  -->
+        <!-- <h4 id='h4'>Уважаемый гость!</h4>
         <p class="m_txt">Добро пожаловать в нашу Электронную библиотеку!</p>
         <p class="m_txt">Для того, чтобы Вы смогли зайти на сайт, пожалуйста, зарегистрируйтесь! Для этого введите свой адрес электронной почты, чтобы мы могли проверить его.</p> 
-    </div>
+    </div>  -->
 </div>
 
 <!-- Модальное окно для сообщений -->
@@ -322,12 +326,7 @@
 </div>
 
 <script>
-// Показать модальное окно через 2 секунды после загрузки страницы
-window.onload = function() {
-    setTimeout(function() {
-        document.getElementById('imageModal').style.display = "flex"; // Используем flex для центрирования
-    }, 2000); // Задержка в 2 секунды
-}
+
 
 // Закрыть модальное окно
 function closeModal() {

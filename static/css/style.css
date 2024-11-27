@@ -75,17 +75,19 @@ body {
   cursor: pointer;
 }
 
-.modal-header {
-  background-color: #ffffff;
-  /* Цвет фона заголовка модального окна */
-  color: #000000;
+
+.icon {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  margin-right: 8px;
 }
 
-/* .modal-footer .btn-secondary {
-  background-color: #0a3a63;
 
-  color: #ffffff;
-} */
+.modal-header {
+  background-color: #ffffff;
+  color: #000000;
+}
 
 
 
@@ -112,9 +114,7 @@ body {
   width: 100%;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.7);
-  /* Цвет плёнки */
   z-index: -1;
-  /* Установите z-index ниже, чем у содержимого секции */
 }
 
 
@@ -146,38 +146,24 @@ body {
 
 .feature--section {
   margin: 20px 0;
-  /* Уменьшите отступы, если нужно */
 }
 
 .for_img {
   width: 100%;
   height: 500px;
-  /* Установите фиксированную высоту для всех изображений */
   overflow: hidden;
-  /* Скрыть переполнение */
   display: flex;
-  /* Используем flexbox для центрирования */
   justify-content: center;
-  /* Центрируем содержимое по горизонтали */
   align-items: center;
-  /* Центрируем содержимое по вертикали */
   margin: 0;
-  /* Убедитесь, что отступы отсутствуют */
 }
 
 .for_img img {
   width: 100%;
-  /* Ширина 100% для заполнения контейнера */
   height: 100%;
-  /* Высота 100% для заполнения контейнера */
   object-fit: cover;
-  /* Заполнение контейнера, может обрезать изображения */
   border-radius: 5px;
-  /* Закругление углов изображений */
 }
-
-
-
 
 
 #citata {
@@ -186,8 +172,6 @@ body {
   margin-bottom: 45px;
   font-size: 40px;
 }
-
-
 
 
 /* Секция О НАС */

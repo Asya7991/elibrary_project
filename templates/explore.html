@@ -91,11 +91,12 @@
                         </li>
                         {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <img src="{% static 'images/logout.png' %}" alt="">
+                            <img src="{% static 'images/exit1.png' %}" alt="" class="icon">
                             <a class="nav-link" href="home">Назад</a>
                         </li>
                         {% else %}
                         <li class="nav-item">
+                            <img src="{% static 'images/chain.png' %}" alt="">
                             <a class="nav-link" href="register">Регистрация/Войти</a>
                         </li>
                         {% endif %}
